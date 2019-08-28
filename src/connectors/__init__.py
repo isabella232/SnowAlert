@@ -1,3 +1,4 @@
+from . import assetpanda
 from . import aws_accounts
 from . import aws_cloudtrail
 from . import aws_config
@@ -11,6 +12,7 @@ from . import okta
 from . import tenable_settings
 
 __all__ = [
+    'assetpanda',
     'aws_inventory',
     'aws_cloudtrail',
     'aws_config',
@@ -25,6 +27,7 @@ __all__ = [
 ]
 
 connectors = {
+    'assetpanda': assetpanda,
     'aws_accounts': aws_accounts,
     'aws_cloudtrail': aws_cloudtrail,
     'aws_config': aws_config,
