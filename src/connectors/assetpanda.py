@@ -7,7 +7,7 @@ from runners.helpers.dbconfig import ROLE as SA_ROLE
 
 import requests
 from urllib.error import HTTPError
-# from .utils import yaml_dump
+from .utils import yaml_dump
 
 from functools import reduce
 import re
@@ -119,9 +119,9 @@ def get_data(token: str, url: str, params: dict = {}) -> dict:
 def connect(connection_name, options):
     landing_table = f'data.assetpanda_{connection_name}_connection '
 
-    # comment = yaml_dump(module='assetpanda', **options)
+    comment = yaml_dump(module='assetpanda', **options)
 
-    db.create_table(name=landing_table, cols=LANDING_TABLE_COLUMNS, comment="comment")
+    db.create_table(name=landing_table, cols=LANDING_TABLE_COLUMNS, comment=comment)
 
     db.execute(f'GRANT INSERT, SELECT ON {landing_table} TO ROLE {SA_ROLE}')
 
