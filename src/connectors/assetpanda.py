@@ -7,14 +7,14 @@ from runners.helpers.dbconfig import ROLE as SA_ROLE
 
 import requests
 from urllib.error import HTTPError
-from .utils import yaml_dump
+# from .utils import yaml_dump
 
 from functools import reduce
 import re
 from datetime import datetime
 
 
-PAGE_SIZE = 150
+PAGE_SIZE = 50
 
 CONNECTION_OPTIONS = [
     {
@@ -119,9 +119,9 @@ def get_data(token: str, url: str, params: dict = {}) -> dict:
 def connect(connection_name, options):
     landing_table = f'data.assetpanda_{connection_name}_connection '
 
-    comment = yaml_dump(module='assetpanda', **options)
+    # comment = yaml_dump(module='assetpanda', **options)
 
-    db.create_table(name=landing_table, cols=LANDING_TABLE_COLUMNS, comment=comment)
+    db.create_table(name=landing_table, cols=LANDING_TABLE_COLUMNS, comment="comment")
 
     db.execute(f'GRANT INSERT, SELECT ON {landing_table} TO ROLE {SA_ROLE}')
 
@@ -151,8 +151,6 @@ def ingest(table_name, options):
 
     while params['offset'] <= total_object_count:
 
-        log.debug("total_object_count: ", total_object_count)
-
         assets = get_data(token=token, url=general_url, params=params)
 
         list_object, total_object_count = get_list_objects_and_total_from_get_object(assets)
@@ -166,7 +164,7 @@ def ingest(table_name, options):
 
         # replace every key "field_NO" by the value of the clear_field["field_NO"]
         list_object_without_field_id = replace_device_key(list_object, clear_fields)
-
+        print("listobject len: ", len(list_object))
         db.insert(
             landing_table,
             values=[(
