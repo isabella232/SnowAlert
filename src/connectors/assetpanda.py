@@ -14,7 +14,7 @@ import re
 from datetime import datetime
 
 
-PAGE_SIZE = 50
+PAGE_SIZE = 150
 
 CONNECTION_OPTIONS = [
     {
