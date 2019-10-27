@@ -17,6 +17,7 @@ setup(
         'pandas==0.24.1',
         'pybrake==0.4.0',
         'rpy2==3.2.0',
+        'sentry-sdk==0.14.4',
         'pytz==2018.9',
         'slackclient==1.3.1',
         'tzlocal==1.5.1',

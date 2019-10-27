@@ -59,6 +59,7 @@ VIOLATION_SQUELCH_POSTFIX = "VIOLATION_SUPPRESSION"
 # exception tracking
 AIRBRAKE_PROJECT_ID = environ.get('AIRBRAKE_PROJECT_ID')
 AIRBRAKE_PROJECT_KEY = environ.get('AIRBRAKE_PROJECT_KEY')
+SENTRY_DSN = environ.get('SENTRY_DSN')
 
 # enabling sends metrics to cloudwatch
 CLOUDWATCH_METRICS = environ.get('CLOUDWATCH_METRICS', False)
